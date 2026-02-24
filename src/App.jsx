@@ -27,7 +27,7 @@ function HomePage() {
     <>
       <div className="mesh-gradient" />
       <Navbar />
-      <main>
+      <main className="overflow-hidden">
         <Hero />
         <About />
         <Experience />

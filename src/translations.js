@@ -14,7 +14,7 @@ const translations = {
       available: 'Na voljo za izzive',
       highlight: '10 leti izkušenj',
       description:
-        'Specialist za Drupal arhitekturo z več kot 10 leti izkušenj pri razvoju vrhunskih digitalnih rešitev za svetovne trge.',
+        'Specialist za Drupal arhitekturo z več kot 10 pri razvoju vrhunskih digitalnih rešitev za svetovne trge.',
       cta1: 'Poglej izkušnje',
       cta2: 'Stopiva v stik',
       scroll: 'Naprej',
