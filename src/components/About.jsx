@@ -23,6 +23,15 @@ const ABOUT_PARTICLES = {
   detectRetina: true,
 }
 
+const renderPara = (para) =>
+  Array.isArray(para)
+    ? para.map((seg, i) =>
+        seg.b
+          ? <strong key={i} className="text-white font-semibold">{seg.t}</strong>
+          : seg.t
+      )
+    : para
+
 export default function About() {
   const particlesReady = useParticlesEngine()
   const { lang } = useLanguage()
@@ -48,9 +57,9 @@ export default function About() {
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16 items-center">
           {/* Bio + stats */}
           <div className="space-y-5 text-white/65" data-aos="fade-right">
-            <p className="text-base sm:text-lg leading-relaxed">{t.p1}</p>
-            <p className="text-base sm:text-lg leading-relaxed font-light">{t.p2}</p>
-            <p className="text-base sm:text-lg leading-relaxed font-light">{t.p3}</p>
+            <p className="text-base sm:text-lg leading-relaxed">{renderPara(t.p1)}</p>
+            <p className="text-base sm:text-lg leading-relaxed font-light">{renderPara(t.p2)}</p>
+            <p className="text-base sm:text-lg leading-relaxed font-light">{renderPara(t.p3)}</p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-8 border-t border-white/10">
