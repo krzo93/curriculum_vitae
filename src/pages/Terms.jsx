@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import LegalLayout from '../components/LegalLayout'
 
@@ -7,7 +7,7 @@ function TermsSL() {
     <>
       <p>
         Dobrodošli na moji osebni spletni strani{' '}
-        <span className="text-white font-medium">YOUR_URL</span>. Z obiskom in uporabo te spletne
+        <span className="text-white font-medium">https://cv.krizaj.net</span>. Z obiskom in uporabo te spletne
         strani se strinjate z naslednjimi pogoji uporabe.
       </p>
 
@@ -79,7 +79,7 @@ function TermsEN() {
     <>
       <p>
         Welcome to my personal website{' '}
-        <span className="text-white font-medium">YOUR_URL</span>. By visiting and using this
+        <span className="text-white font-medium">https://cv.krizaj.net</span>. By visiting and using this
         website, you agree to the following terms of use.
       </p>
 
@@ -148,6 +148,14 @@ function TermsEN() {
 
 export default function Terms() {
   const { lang } = useLanguage()
+
+  useEffect(() => {
+    document.title = lang === 'sl'
+      ? 'Pogoji uporabe | Matic Križaj'
+      : 'Terms of Service | Matic Križaj'
+    return () => { document.title = 'Matic Križaj | Senior Full Stack Drupal Developer' }
+  }, [lang])
+
   return (
     <LegalLayout titleKey="terms">
       {lang === 'sl' ? <TermsSL /> : <TermsEN />}

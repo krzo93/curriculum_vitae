@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import LegalLayout from '../components/LegalLayout'
 
@@ -7,7 +7,7 @@ function PrivacySL() {
     <>
       <p>
         Ta politika zasebnosti pojasnjuje, kako zbiram, uporabljam in varujem vaše osebne podatke
-        na spletni strani <span className="text-white font-medium">YOUR_URL</span> (v nadaljevanju
+        na spletni strani <span className="text-white font-medium">https://cv.krizaj.net</span> (v nadaljevanju
         "spletna stran"). Upravljavec osebnih podatkov na tej spletni strani je{' '}
         <span className="text-white font-medium">Matic Križaj</span>.
       </p>
@@ -86,7 +86,7 @@ function PrivacyEN() {
     <>
       <p>
         This Privacy Policy explains how I collect, use, and protect your personal data on the
-        website <span className="text-white font-medium">YOUR_URL</span> (hereinafter "the
+        website <span className="text-white font-medium">https://cv.krizaj.net</span> (hereinafter "the
         website"). The data controller for this website is{' '}
         <span className="text-white font-medium">Matic Križaj</span>.
       </p>
@@ -160,6 +160,14 @@ function PrivacyEN() {
 
 export default function Privacy() {
   const { lang } = useLanguage()
+
+  useEffect(() => {
+    document.title = lang === 'sl'
+      ? 'Politika zasebnosti | Matic Križaj'
+      : 'Privacy Policy | Matic Križaj'
+    return () => { document.title = 'Matic Križaj | Senior Full Stack Drupal Developer' }
+  }, [lang])
+
   return (
     <LegalLayout titleKey="privacy">
       {lang === 'sl' ? <PrivacySL /> : <PrivacyEN />}
