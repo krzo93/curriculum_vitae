@@ -7,8 +7,8 @@ const JOB_META = [
   { company: 'Netmedia',   role: 'Full Stack Drupal Developer', location: 'Slovenia', period: { sl: '2020 – Danes', en: '2020 – Present' }, file: 'netmedia.log',   delay: 100 },
   { company: 'Apsis',      role: 'Full Stack Drupal Developer', location: 'Sweden',   period: { sl: '2021',         en: '2021'           }, file: 'apsis.log',      delay: 200 },
   { company: 'NDP Studio', role: 'Full Stack Drupal Developer', location: 'UK',       period: { sl: '2018 – 2021',  en: '2018 – 2021'    }, file: 'ndp_studio.log', delay: 300 },
-  { company: 'Specto',     role: 'Full Stack Drupal Developer', location: 'Slovenia', period: { sl: '2018 – 2021',  en: '2018 – 2021'    }, file: 'specto.log',     delay: 400 },
-  { company: 'Agiledrop',  role: 'Drupal Developer',           location: 'Slovenia', period: { sl: '2016 – 2018',  en: '2016 – 2018'    }, file: 'agiledrop.log',  delay: 500 },
+  { company: 'Agiledrop',  role: 'Drupal Developer',           location: 'Slovenia', period: { sl: '2016 – 2018',  en: '2016 – 2018'    }, file: 'agiledrop.log',  delay: 400 },
+  { company: { sl: 'Fakulteta za računalništvo in informatiko', en: 'Faculty of Computer and Information Science' }, role: 'Computer Science Student', location: 'Slovenia', period: { sl: '2012 – 2016', en: '2012 – 2016' }, file: 'fri.log', delay: 500 },
 ]
 
 function ExperienceCard({ meta, description }) {
@@ -40,7 +40,15 @@ function ExperienceCard({ meta, description }) {
             </span>
           </div>
           <span className="block text-base text-primary/60 mb-3 font-mono italic">{meta.role}</span>
-          <p className="text-white/60 font-light leading-relaxed text-sm sm:text-base">{description}</p>
+          <ul className="space-y-2">
+            {description.map((item, i) => (
+              <li key={i} className="text-white/60 font-light leading-relaxed text-sm sm:text-base">
+                {item.title ? (
+                  <><span className="font-semibold text-white/80">{item.title}: </span>{item.text}</>
+                ) : item.text}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
@@ -64,8 +72,8 @@ export default function Experience() {
         <div className="relative border-l-2 border-primary/20 pl-6 sm:pl-8 ml-3 sm:ml-4 space-y-10">
           {JOB_META.map((meta, i) => (
             <ExperienceCard
-              key={meta.company}
-              meta={{ ...meta, period: meta.period[lang] }}
+              key={typeof meta.company === 'object' ? meta.company[lang] : meta.company}
+              meta={{ ...meta, company: typeof meta.company === 'object' ? meta.company[lang] : meta.company, period: meta.period[lang] }}
               description={t.jobs[i]}
             />
           ))}

@@ -25,7 +25,7 @@ const SKILLS = [
   },
   {
     title: 'BACKEND',
-    techs: 'php · mysql · symfony · solr · git · composer · mariadb · redis · memcached · rest apis · phpunit · oop · bash · shell',
+    techs: 'php · mysql · symfony · solr · git · composer · mariadb · redis · memcached · rest apis · phpunit · oop · bash · shell · python · Java · C#',
     index: 1,
   },
   {

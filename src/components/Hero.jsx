@@ -91,6 +91,10 @@ function CodeboxTerminal() {
           <span className="text-blue-400">react/</span>
           {'  '}
           <span className="text-blue-400">devops/</span>
+          {'  '}
+          <span className="text-blue-400">html5/</span>
+          {'  '}
+          <span className="text-blue-400">sass/</span>
         </div>
 
         <div>
