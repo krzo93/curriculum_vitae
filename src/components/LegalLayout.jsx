@@ -43,7 +43,7 @@ const LEGAL_PARTICLES = {
 
 export default function LegalLayout({ titleKey, children }) {
   const particlesReady = useParticlesEngine()
-  const { lang } = useLanguage()
+  const { lang, switchLang } = useLanguage()
   const t = translations[lang].legal
 
   return (
@@ -65,13 +65,30 @@ export default function LegalLayout({ titleKey, children }) {
           <Link to="/" className="text-2xl font-extrabold tracking-tighter">
             MK<span className="text-primary">.</span>
           </Link>
-          <Link
-            to="/"
-            className="flex items-center gap-1.5 text-sm text-white/40 hover:text-primary transition-colors"
-          >
-            <ArrowLeft size={14} />
-            {t.back}
-          </Link>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-0.5 bg-white/5 border border-white/10 rounded-full p-1">
+              {['sl', 'en'].map((l) => (
+                <button
+                  key={l}
+                  onClick={() => switchLang(l)}
+                  className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                    lang === l
+                      ? 'bg-primary text-white shadow-[0_0_10px_rgba(255,107,0,0.4)]'
+                      : 'text-white/40 hover:text-white'
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+            <Link
+              to="/"
+              className="flex items-center gap-1.5 text-sm text-white/40 hover:text-primary transition-colors"
+            >
+              <ArrowLeft size={14} />
+              {t.back}
+            </Link>
+          </div>
         </div>
       </nav>
 
